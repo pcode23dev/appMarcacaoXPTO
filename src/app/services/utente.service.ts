@@ -1,4 +1,6 @@
-import { Injectable } from '@angular/core';
+
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -7,27 +9,33 @@ import { Utente } from '../models/utente.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class UtenteService {
   private apiUrl = 'http://localhost:3000/utentes';
   private currentUserSubject = new BehaviorSubject<Utente | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
+  private isBrowser: boolean;
 
-  constructor(private http: HttpClient) {
-    // Verificar se existe usuário logado no localStorage
-    const savedUser = localStorage.getItem('currentUser');
-    if (savedUser) {
-      this.currentUserSubject.next(JSON.parse(savedUser));
+  constructor(private http: HttpClient, @Inject(PLATFORM_ID) platformId: Object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+
+    if (this.isBrowser) {
+      const savedUser = localStorage.getItem('currentUser');
+      if (savedUser) {
+        this.currentUserSubject.next(JSON.parse(savedUser));
+      }
     }
   }
 
-  // Autenticação
   login(email: string, senha: string): Observable<Utente | null> {
     return this.http.get<Utente[]>(`${this.apiUrl}?email=${email}&senha=${senha}`)
       .pipe(
         map(users => {
           if (users.length > 0) {
             const user = users[0];
-            localStorage.setItem('currentUser', JSON.stringify(user));
+            if (this.isBrowser) {
+              localStorage.setItem('currentUser', JSON.stringify(user));
+            }
             this.currentUserSubject.next(user);
             return user;
           }
@@ -37,7 +45,9 @@ export class UtenteService {
   }
 
   logout(): void {
-    localStorage.removeItem('currentUser');
+    if (this.isBrowser) {
+      localStorage.removeItem('currentUser');
+    }
     this.currentUserSubject.next(null);
   }
 
@@ -76,3 +86,4 @@ export class UtenteService {
     return this.http.post<Utente>(this.apiUrl, novoUtente);
   }
 }
+
