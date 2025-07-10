@@ -1,0 +1,186 @@
+<div class="marcacao-container">
+  <div class="marcacao-content">
+    <div class="marcacao-header">
+      <h1>Marcação de Consulta</h1>
+      <p>Preencha o formulário para solicitar sua marcação</p>
+    </div>
+
+    @if (successMessage) {
+      <div class="success-message">{{ successMessage }}</div>
+    }
+
+    @if (errorMessage) {
+      <div class="error-message">{{ errorMessage }}</div>
+    }
+
+    <form [formGroup]="marcacaoForm" (ngSubmit)="onSubmit()" class="marcacao-form">
+      <!-- Dados Pessoais -->
+      <section class="form-section">
+        <h2>Dados Pessoais</h2>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nome">Nome Completo *</label>
+            <input type="text" id="nome" formControlName="nome" class="form-control">
+            @if (getErrorMessage('nome')) {
+              <div class="field-error">{{ getErrorMessage('nome') }}</div>
+            }
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" formControlName="email" class="form-control">
+            @if (getErrorMessage('email')) {
+              <div class="field-error">{{ getErrorMessage('email') }}</div>
+            }
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="telefone">Telefone *</label>
+            <input type="tel" id="telefone" formControlName="telefone" class="form-control" placeholder="9 dígitos">
+            @if (getErrorMessage('telefone')) {
+              <div class="field-error">{{ getErrorMessage('telefone') }}</div>
+            }
+          </div>
+          
+          <div class="form-group">
+            <label for="numeroUtente">Número de Utente *</label>
+            <input type="text" id="numeroUtente" formControlName="numeroUtente" class="form-control" placeholder="9 dígitos">
+            @if (getErrorMessage('numeroUtente')) {
+              <div class="field-error">{{ getErrorMessage('numeroUtente') }}</div>
+            }
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="morada">Morada *</label>
+          <input type="text" id="morada" formControlName="morada" class="form-control">
+          @if (getErrorMessage('morada')) {
+            <div class="field-error">{{ getErrorMessage('morada') }}</div>
+          }
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="dataNascimento">Data de Nascimento *</label>
+            <input type="date" id="dataNascimento" formControlName="dataNascimento" class="form-control">
+            @if (getErrorMessage('dataNascimento')) {
+              <div class="field-error">{{ getErrorMessage('dataNascimento') }}</div>
+            }
+          </div>
+          
+          <div class="form-group">
+            <label for="genero">Gênero *</label>
+            <select id="genero" formControlName="genero" class="form-control">
+              <option value="">Selecione</option>
+              @for (genero of generosOptions; track genero) {
+                <option [value]="genero">{{ genero }}</option>
+              }
+            </select>
+            @if (getErrorMessage('genero')) {
+              <div class="field-error">{{ getErrorMessage('genero') }}</div>
+            }
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="fotografia">Fotografia (opcional)</label>
+          <input type="file" id="fotografia" (change)="onFileChange($event)" accept="image/*" class="form-control">
+        </div>
+      </section>
+
+      <!-- Dados da Marcação -->
+      <section class="form-section">
+        <h2>Dados da Marcação</h2>
+        
+        <div class="form-group">
+          <label>Atos Clínicos *</label>
+          <div class="checkbox-group">
+            @for (ato of atosClinicosOptions; track ato) {
+              <label class="checkbox-label">
+                <input 
+                  type="checkbox" 
+                  [checked]="isAtoSelected(ato)"
+                  (change)="onAtoChange(ato, $event)"
+                >
+                {{ ato }}
+              </label>
+            }
+          </div>
+          @if (getErrorMessage('atos')) {
+            <div class="field-error">{{ getErrorMessage('atos') }}</div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="subsistema">Subsistema de Saúde *</label>
+          <select id="subsistema" formControlName="subsistema" class="form-control">
+            <option value="">Selecione</option>
+            @for (subsistema of subsistemasOptions; track subsistema) {
+              <option [value]="subsistema">{{ subsistema }}</option>
+            }
+          </select>
+          @if (getErrorMessage('subsistema')) {
+            <div class="field-error">{{ getErrorMessage('subsistema') }}</div>
+          }
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="profissional">Profissional (opcional)</label>
+            <select id="profissional" formControlName="profissional" class="form-control">
+              <option value="">Indiferente</option>
+              @for (prof of profissionais; track prof.id) {
+                <option [value]="prof.id">{{ prof.nome }} - {{ prof.especialidade }}</option>
+              }
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="horarioPreferido">Horário Preferido *</label>
+            <select id="horarioPreferido" formControlName="horarioPreferido" class="form-control">
+              <option value="">Selecione</option>
+              @for (horario of horariosOptions; track horario) {
+                <option [value]="horario">{{ horario }}</option>
+              }
+            </select>
+            @if (getErrorMessage('horarioPreferido')) {
+              <div class="field-error">{{ getErrorMessage('horarioPreferido') }}</div>
+            }
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="intervaloDatas">Intervalo de Datas Pretendido *</label>
+          <input type="text" id="intervaloDatas" formControlName="intervaloDatas" class="form-control" 
+                 placeholder="ex: 01/02/2024 a 15/02/2024">
+          @if (getErrorMessage('intervaloDatas')) {
+            <div class="field-error">{{ getErrorMessage('intervaloDatas') }}</div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="observacoes">Observações (opcional)</label>
+          <textarea id="observacoes" formControlName="observacoes" class="form-control" rows="3"
+                    placeholder="Observações adicionais..."></textarea>
+        </div>
+      </section>
+
+      <div class="form-actions">
+        <button type="button" class="btn-back" (click)="navigateToHome()">
+          ← Voltar
+        </button>
+        <button type="submit" class="btn-submit" [disabled]="isLoading">
+          @if (isLoading) {
+            <span class="spinner"></span>
+            Enviando...
+          } @else {
+            Enviar Pedido
+          }
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

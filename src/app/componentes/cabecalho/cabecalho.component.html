@@ -1,0 +1,42 @@
+<header class="cabecalho">
+  <div class="container">
+    <div class="logo" (click)="navigateToHome()">
+      <h1>Clínica XPTO</h1>
+      <span>Sistema de Marcações</span>
+    </div>
+
+    <nav class="navegacao">
+      <ul class="menu">
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Início</a></li>
+        
+        @if (!currentUser) {
+          <li><a routerLink="/marcacao-anonima" routerLinkActive="active">Marcar Consulta</a></li>
+          <li><a class="btn-login" (click)="navigateToLogin()">Entrar</a></li>
+        }
+        
+        @if (currentUser) {
+          @if (currentUser.role === 'utente') {
+            <li><a routerLink="/marcacao-utente" routerLinkActive="active">Nova Marcação</a></li>
+            <li><a routerLink="/historico" routerLinkActive="active">Histórico</a></li>
+          }
+          
+          @if (currentUser.role === 'administrativo') {
+            <li><a routerLink="/administracao" routerLinkActive="active">Administração</a></li>
+          }
+          
+          @if (currentUser.role === 'admin') {
+            <li><a routerLink="/gestao-utentes" routerLinkActive="active">Gestão Utentes</a></li>
+          }
+          
+          <li class="user-menu">
+            <div class="user-info" (click)="navigateToProfile()">
+              <img [src]="currentUser.fotografia" [alt]="currentUser.nome" class="avatar">
+              <span>{{ currentUser.nome }}</span>
+            </div>
+            <button class="btn-logout" (click)="logout()">Sair</button>
+          </li>
+        }
+      </ul>
+    </nav>
+  </div>
+</header>

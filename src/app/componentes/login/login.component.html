@@ -1,0 +1,80 @@
+<div class="login-container">
+  <div class="login-content">
+    <div class="login-header">
+      <h1>Entrar na Área do Utente</h1>
+      <p>Acesse sua conta para consultar histórico e fazer novas marcações</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      @if (errorMessage) {
+        <div class="error-message">
+          {{ errorMessage }}
+        </div>
+      }
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+          type="email" 
+          id="email" 
+          formControlName="email"
+          class="form-control"
+          [class.invalid]="getErrorMessage('email')"
+          placeholder="Digite seu email"
+        >
+        @if (getErrorMessage('email')) {
+          <div class="field-error">{{ getErrorMessage('email') }}</div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input 
+          type="password" 
+          id="senha" 
+          formControlName="senha"
+          class="form-control"
+          [class.invalid]="getErrorMessage('senha')"
+          placeholder="Digite sua senha"
+        >
+        @if (getErrorMessage('senha')) {
+          <div class="field-error">{{ getErrorMessage('senha') }}</div>
+        }
+      </div>
+
+      <button 
+        type="submit" 
+        class="btn-submit"
+        [disabled]="isLoading"
+      >
+        @if (isLoading) {
+          <span class="spinner"></span>
+          Entrando...
+        } @else {
+          Entrar
+        }
+      </button>
+    </form>
+
+    <div class="login-footer">
+      <div class="demo-credentials">
+        <h3>Credenciais de Demonstração</h3>
+        <div class="credential-item">
+          <strong>Utente:</strong> joao.silva@email.com / 123456
+        </div>
+        <div class="credential-item">
+          <strong>Administrativo:</strong> admin@clinicaxpto.com / admin123
+        </div>
+        <div class="credential-item">
+          <strong>Administrador:</strong> carlos.admin@clinicaxpto.com / admin123
+        </div>
+      </div>
+
+      <div class="back-to-home">
+        <button type="button" class="btn-back" (click)="navigateToHome()">
+          ← Voltar ao Início
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

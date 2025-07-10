@@ -1,0 +1,101 @@
+<main class="pagina-inicial">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Bem-vindo à Clínica XPTO</h1>
+        <p>Cuidamos da sua saúde com excelência e dedicação. Marque sua consulta online de forma rápida e segura.</p>
+        <div class="hero-buttons">
+          <a routerLink="/marcacao-anonima" class="btn btn-primary">Marcar Consulta</a>
+          <a routerLink="/login" class="btn btn-secondary">Área do Utente</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="medical-icon">🏥</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Especialidades -->
+  <section class="especialidades">
+    <div class="container">
+      <h2>Nossas Especialidades</h2>
+      <div class="especialidades-grid">
+        @for (especialidade of especialidades; track especialidade.nome) {
+          <div class="especialidade-card">
+            <div class="especialidade-icone">{{ especialidade.icone }}</div>
+            <h3>{{ especialidade.nome }}</h3>
+            <p>{{ especialidade.descricao }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Serviços -->
+  <section class="servicos">
+    <div class="container">
+      <h2>Nossos Serviços</h2>
+      <div class="servicos-grid">
+        @for (servico of servicos; track servico.titulo) {
+          <div class="servico-card">
+            <div class="servico-icone">{{ servico.icone }}</div>
+            <h3>{{ servico.titulo }}</h3>
+            <p>{{ servico.descricao }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Pronto para marcar sua consulta?</h2>
+        <p>Escolha entre marcação rápida (sem cadastro) ou acesse sua área pessoal para um acompanhamento completo.</p>
+        <div class="cta-buttons">
+          <a routerLink="/marcacao-anonima" class="btn btn-primary">Marcação Rápida</a>
+          <a routerLink="/login" class="btn btn-outline">Entrar na Minha Área</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Informações de Contato -->
+  <section class="contato">
+    <div class="container">
+      <h2>Informações de Contato</h2>
+      <div class="contato-info">
+        <div class="contato-item">
+          <div class="contato-icone">📍</div>
+          <div>
+            <h4>Localização</h4>
+            <p>Rua da Saúde, 123<br>1000-000 Lisboa</p>
+          </div>
+        </div>
+        <div class="contato-item">
+          <div class="contato-icone">📞</div>
+          <div>
+            <h4>Telefone</h4>
+            <p>+351 21 123 4567</p>
+          </div>
+        </div>
+        <div class="contato-item">
+          <div class="contato-icone">📧</div>
+          <div>
+            <h4>Email</h4>
+            <p>info@clinicaxpto.com</p>
+          </div>
+        </div>
+        <div class="contato-item">
+          <div class="contato-icone">🕒</div>
+          <div>
+            <h4>Horário</h4>
+            <p>Segunda a Sexta: 8h às 19h<br>Sábado: 9h às 13h</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

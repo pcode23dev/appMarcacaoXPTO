@@ -1,0 +1,104 @@
+{
+  "utentes": [
+    {
+      "id": 1,
+      "nome": "João Silva",
+      "email": "joao.silva@email.com",
+      "telefone": "912345678",
+      "morada": "Rua das Flores, 123, Lisboa",
+      "dataNascimento": "1985-03-15",
+      "genero": "Masculino",
+      "numeroUtente": "123456789",
+      "fotografia": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjZGRkIi8+Cjx0ZXh0IHg9IjUwIiB5PSI1NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2Ij5Gb3RvPC90ZXh0Pgo8L3N2Zz4=",
+      "senha": "123456",
+      "role": "utente"
+    },
+    {
+      "id": 2,
+      "nome": "Maria Santos",
+      "email": "maria.santos@email.com",
+      "telefone": "963456789",
+      "morada": "Avenida da Liberdade, 456, Porto",
+      "dataNascimento": "1990-07-22",
+      "genero": "Feminino",
+      "numeroUtente": "987654321",
+      "fotografia": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjZGRkIi8+Cjx0ZXh0IHg9IjUwIiB5PSI1NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2Ij5Gb3RvPC90ZXh0Pgo8L3N2Zz4=",
+      "senha": "123456",
+      "role": "utente"
+    },
+    {
+      "id": 3,
+      "nome": "Ana Administradora",
+      "email": "admin@clinicaxpto.com",
+      "telefone": "212345678",
+      "morada": "Clínica XPTO, Lisboa",
+      "dataNascimento": "1980-01-10",
+      "genero": "Feminino",
+      "numeroUtente": "000000000",
+      "fotografia": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjZGRkIi8+Cjx0ZXh0IHg9IjUwIiB5PSI1NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2Ij5Gb3RvPC90ZXh0Pgo8L3N2Zz4=",
+      "senha": "admin123",
+      "role": "administrativo"
+    },
+    {
+      "id": 4,
+      "nome": "Carlos Administrador",
+      "email": "carlos.admin@clinicaxpto.com",
+      "telefone": "212345679",
+      "morada": "Clínica XPTO, Lisboa",
+      "dataNascimento": "1975-05-20",
+      "genero": "Masculino",
+      "numeroUtente": "000000001",
+      "fotografia": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjZGRkIi8+Cjx0ZXh0IHg9IjUwIiB5PSI1NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjY2Ij5Gb3RvPC90ZXh0Pgo8L3N2Zz4=",
+      "senha": "admin123",
+      "role": "admin"
+    }
+  ],
+  "pedidos": [
+    {
+      "id": 1,
+      "utenteId": 1,
+      "atos": ["CONSULTA"],
+      "subsistema": "PUBLICO",
+      "profissional": 1,
+      "intervaloDatas": "2024-02-01 a 2024-02-15",
+      "horarioPreferido": "Manhã",
+      "observacoes": "Consulta de rotina",
+      "estado": "AGENDADO",
+      "dataSubmissao": "2024-01-15T10:30:00.000Z"
+    },
+    {
+      "id": 2,
+      "utenteId": 2,
+      "atos": ["EXAME", "CONSULTA"],
+      "subsistema": "PRIVADO",
+      "profissional": 2,
+      "intervaloDatas": "2024-02-10 a 2024-02-25",
+      "horarioPreferido": "Tarde",
+      "observacoes": "Exame de sangue e consulta de seguimento",
+      "estado": "PEDIDO",
+      "dataSubmissao": "2024-01-20T14:15:00.000Z"
+    }
+  ],
+  "profissionais": [
+    {
+      "id": 1,
+      "nome": "Dr. António Silva",
+      "especialidade": "Cardiologia"
+    },
+    {
+      "id": 2,
+      "nome": "Dra. Isabel Costa",
+      "especialidade": "Medicina Geral"
+    },
+    {
+      "id": 3,
+      "nome": "Dr. Pedro Oliveira",
+      "especialidade": "Dermatologia"
+    },
+    {
+      "id": 4,
+      "nome": "Dra. Sofia Rodrigues",
+      "especialidade": "Ginecologia"
+    }
+  ]
+}
